@@ -1,7 +1,10 @@
-export default function ProductPage() {
+import Products from './../components/Products';
+
+export default function OrderPage() {
+
   return (
     <div>
-      <p>Product!</p>
+      <Products />
     </div>
   );
 }

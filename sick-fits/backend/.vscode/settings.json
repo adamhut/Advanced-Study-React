@@ -6,6 +6,7 @@
     "titleBar.inactiveBackground": "#FF2C70CC"
   },
   "editor.formatOnSave": true,
+  "editor.tabSize": 2,
   "[javascript]": {
     "editor.formatOnSave": false
   },
