@@ -1,26 +1,43 @@
 import useForm from './../lib/useForm';
+import Form from './styles/Form';
 
 export default function CreateProduct() {
     const { inputs, handleChange, clearForm, resetForm } = useForm({
+        image: '',
         name: 'Nice shoe',
         price: 323432,
-        description: 'test description'
+        description: 'description'
     });
 
+    function handleSubmit() {
+
+    }
+
     return (
-        <form >
+        <Form onSubmit={ handleSubmit }>
+            <fieldset>
+                <label htmlFor="image">
+                    Image
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        onChange={handleChange}
+                    />
+                </label>
             <label htmlFor="name">
-                Name
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Name"
-                    value={inputs.name}
-                    onChange={handleChange}
-                />
-            </label>
-            <label htmlFor="price">
+                    Name
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Name"
+                        value={inputs.name}
+                        onChange={handleChange}
+
+                    />
+                </label>
+                <label htmlFor="price">
                 Price
                 <input
                     type="number"
@@ -30,20 +47,22 @@ export default function CreateProduct() {
                     value={inputs.price}
                     onChange={handleChange}
                 />
-            </label>
+                </label>
+
             <label htmlFor="description">
                 Description
-                <input
-                    type="number"
-                    id="price"
-                    name="price"
-                    placeholder="price"
-                    value={inputs.price}
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="description"
+                    value={inputs.description}
                     onChange={handleChange}
                 />
             </label>
-            <button type="button" onClick={clearForm}> Clear Form</button>
-            <button type="button" onClick={resetForm}> Reset Form</button>
-        </form>
+            <button type="submit">+ Add Product</button>
+            {/* <button type="submit" onClick={clearForm}> + Add Product</button>
+            <button type="button" onClick={resetForm}> Reset Form</button> */}
+            </fieldset>
+        </Form>
     )
 }
