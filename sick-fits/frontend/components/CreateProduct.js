@@ -1,8 +1,11 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import useForm from './../lib/useForm';
+import { Router } from 'next/router';
+import useForm from '../lib/useForm';
 import Form from './styles/Form';
 import DisplayError from './ErrorMessage';
+import { ALL_PRODUCTS_QUERY } from './Products';
+
 
 const CREATE_PRODUCT_MUTATION = gql`
   mutation CREATE_PRODUCT_MUTATION(
@@ -24,6 +27,7 @@ const CREATE_PRODUCT_MUTATION = gql`
       id
       price
       description
+      name
     }
   }
 `;
@@ -40,7 +44,8 @@ export default function CreateProduct() {
   const [createProduct, { loading, error, data }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     {
-      variables: inputs
+      variables: inputs,
+      refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
     }
   );
 //   console.log(createProduct);
@@ -58,6 +63,12 @@ export default function CreateProduct() {
                 const res = await createProduct();
                 //console.log(res)
                 clearForm();
+                // go to the product's page!+
+                // router.push(`/product/${res.data.createProduct.id}`);
+                Route.push({
+                  pathname: `/product/[id]`,
+                  query: { id: res.data.createProduct.id },
+                });
             }}>
             <DisplayError error={error} />
             <fieldset disabled={loading} aria-busy={loading}>

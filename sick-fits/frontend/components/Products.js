@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import styeld from 'styled-components'
 import Product from './Product';
 
-const ALL_PRODUCTS_QUERY = gql`
+export const ALL_PRODUCTS_QUERY = gql`
 query ALL_PRODUCTS_QUERY{
   allProducts{
     id,
@@ -48,3 +48,5 @@ export default function Products() {
     </div>
   );
 }
+
+export { }
